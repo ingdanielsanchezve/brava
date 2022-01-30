@@ -45,15 +45,15 @@
 </template>
 
 <script>
-import Chrome from '@/assets/Chrome.svg'
-import Gmail from '@/assets/Gmail.svg'
-import Search from '@/assets/Search.svg'
-import Drive from '@/assets/Drive.svg'
-import Youtube from '@/assets/Youtube.svg'
-import Apps from '@/assets/Apps.svg'
-import Wifi from '@/assets/Wifi.svg'
-import Battery from '@/assets/Battery.svg'
-import Avatar from '@/assets/Avatar.svg'
+import Chrome from '@/assets/chrome.svg'
+import Gmail from '@/assets/gmail.svg'
+import Search from '@/assets/search.svg'
+import Drive from '@/assets/drive.svg'
+import Youtube from '@/assets/youtube.svg'
+import Apps from '@/assets/apps.svg'
+import Wifi from '@/assets/wifi.svg'
+import Battery from '@/assets/battery.svg'
+import Avatar from '@/assets/avatar.svg'
 
 export default {
   name: 'IndexPage',
