@@ -90,6 +90,7 @@ export default {
   &:active,
   &:focus {
     border: none;
+    box-shadow: none;
   }
 }
 
