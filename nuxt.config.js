@@ -1,5 +1,12 @@
 export default {
   target: 'static',
+
+  baseUrl: process.env.BASE_URL || 'http://localhost:3000/',
+
+  axios: {
+    baseURL: process.env.BASE_URL || 'http://localhost:3000/'
+  },
+
   head: {
     title: 'Bravado',
     htmlAttrs: {
