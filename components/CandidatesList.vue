@@ -82,15 +82,11 @@ export default {
       return this.candidates.length > 0
     }
   },
-  async created () {
+  async mounted () {
+    this.$refs.searchTerm.focus()
     if (!this.isCandidateListLoaded) {
       await this.$store.dispatch('candidates/LOAD_CANDIDATES')
     }
-  },
-  mounted () {
-    console.log("🚀 ~ file: CandidatesList.vue ~ line 92 ~ mounted ~ this.isCandidateListLoaded", this.isCandidateListLoaded)
-    console.log("🚀 ~ file: CandidatesList.vue ~ line 94 ~ mounted ~ this.searchTerm.length", this.searchTerm)
-    this.$refs.searchTerm.focus()
     if (this.searchTerm.length > 0) {
       this.filterCandidatesList()
     }
