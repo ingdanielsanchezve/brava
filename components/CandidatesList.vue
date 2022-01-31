@@ -12,11 +12,11 @@
                 </span>
               </p>
             </div>
-            <ul v-show="isLoadingList" class="candidates-list">
+            <ul v-if="!isCandidateListLoaded" class="candidates-list">
               <CandidateSkeleton v-for="index in 4" :key="index" />
             </ul>
             <virtual-list
-              v-show="isCandidateListLoaded"
+              v-else
               class="candidates-list"
               :data-key="'email'"
               :data-sources="candidatesList"
@@ -77,9 +77,6 @@ export default {
     },
     candidates () {
       return this.$store.getters['candidates/getCandidates']()
-    },
-    isLoadingList () {
-      return this.$store.getters['candidates/isLoadingList']()
     },
     isCandidateListLoaded () {
       return this.candidates.length > 0

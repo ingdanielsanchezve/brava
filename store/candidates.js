@@ -2,17 +2,14 @@ import { candidatesService } from '@/common/api/candidates.services'
 
 export const state = () => ({
   candidates: [],
-  suitableCandidates: [],
-  loadingList: false
+  suitableCandidates: []
 })
 
 export const actions = {
   async LOAD_CANDIDATES ({ commit }) {
-    commit('setIsLoadingList', true)
     try {
       const candidates = await candidatesService.getCandidates(this.$axios)
       commit('setCandidates', candidates)
-      commit('setIsLoadingList', false)
     } catch (e) {
       console.error(e)
     }
@@ -25,9 +22,6 @@ export const actions = {
 export const mutations = {
   setCandidates (state, candidates) {
     state.candidates = Object.freeze(candidates)
-  },
-  setIsLoadingList (state, isLoadingList) {
-    state.loadingList = isLoadingList
   },
   toggleCandidateSuitable (state, candidate) {
     const index = state.suitableCandidates.findIndex(c => c.email === candidate.email)
@@ -42,9 +36,6 @@ export const mutations = {
 export const getters = {
   getCandidates: state => () => {
     return state.candidates
-  },
-  isLoadingList: state => () => {
-    return state.loadingList
   },
   isCandidateSuitable: state => candidateEmail => {
     return state.suitableCandidates.find(c => c.email === candidateEmail)
