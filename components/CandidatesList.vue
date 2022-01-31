@@ -12,11 +12,11 @@
                 </span>
               </p>
             </div>
-            <ul v-if="isLoadingList" class="candidates-list">
+            <ul v-show="isLoadingList" class="candidates-list">
               <CandidateSkeleton v-for="index in 4" :key="index" />
             </ul>
             <virtual-list
-              v-else
+              v-show="isCandidateListLoaded"
               class="candidates-list"
               :data-key="'email'"
               :data-sources="candidatesList"
@@ -80,16 +80,19 @@ export default {
     },
     isLoadingList () {
       return this.$store.getters['candidates/isLoadingList']()
+    },
+    isCandidateListLoaded () {
+      return this.candidates.length > 0
     }
   },
   async created () {
-    if (this.candidates.length === 0) {
+    if (!this.isCandidateListLoaded) {
       await this.$store.dispatch('candidates/LOAD_CANDIDATES')
     }
   },
   mounted () {
+    this.$refs.searchTerm.focus()
     if (this.searchTerm.length > 0) {
-      this.$refs.searchTerm.focus()
       this.filterCandidatesList()
     }
   },
