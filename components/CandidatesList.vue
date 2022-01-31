@@ -88,6 +88,7 @@ export default {
     }
   },
   mounted () {
+    console.log("🚀 ~ file: CandidatesList.vue ~ line 92 ~ mounted ~ this.candidates", this.candidates)
     if (this.searchTerm.length > 0) {
       this.$refs.searchTerm.focus()
       this.filterCandidatesList()
