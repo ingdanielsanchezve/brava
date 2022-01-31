@@ -22,7 +22,6 @@
               :data-sources="candidatesList"
               :data-component="candidateComponent"
               :extra-props="{ searchTerm: searchTerm }"
-              :keep="100"
             />
           </div>
         </div>
