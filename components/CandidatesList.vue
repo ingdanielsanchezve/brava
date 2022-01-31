@@ -4,7 +4,7 @@
       <div class="column is-6 is-offset-2">
         <div class="card">
           <div class="card-content">
-            <div class="field">
+            <div class="field input-wrapper">
               <p class="control has-icons-left">
                 <input v-model="searchTerm" class="input" type="text" @input="filterCandidatesList">
                 <span class="icon is-small is-left">
@@ -95,6 +95,10 @@ export default {
   border: none;
   border-radius: 2px;
   filter: drop-shadow( 0px 2px 2px rgba(0, 0, 0, 0.24));
+  font-size: 24px;
+  line-height: 28.13px;
+  color: rgba(0, 0, 0, 0.75);
+  height: 48px;
 
   &:active,
   &:focus {
@@ -103,9 +107,27 @@ export default {
   }
 }
 
+.control.has-icons-left {
+  .icon{
+    height: 48px;
+  }
+}
+
+.input-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 1.1875em 2.3em 0 1.5em;
+  z-index: 2;
+  font-size: 1rem;
+}
+
 .candidates-list {
   max-height: 70vh;
   overflow-y: scroll;
+  padding-top: 2.5em;
+  padding-right: 10px;
 
   &::-webkit-scrollbar {
     width: 2px;
