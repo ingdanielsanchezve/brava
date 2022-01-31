@@ -1,5 +1,5 @@
 <template>
-  <div class="candidate-card">
+  <div class="candidate-card" :class="{'is-first-candidate': isFirstCandidate}">
     <div class="candidate-details-wrapper">
       <div class="candidate-avatar-wrapper">
         <img class="candidate-avatar" :src="source.avatar" />
@@ -16,7 +16,9 @@
         </div>
 
         <div class="candidate-select">
-          mark as siutable
+          <a href="#">
+           {{ isFirstCandidate ? 'skip selection' : 'mark as siutable' }}
+          </a>
         </div>
       </div>
     </div>
@@ -32,6 +34,9 @@
 export default {
   name: 'Candidate',
   props: {
+    index: {
+        type: Number
+    },
     source: {
       type: Object,
       default () {
@@ -42,6 +47,11 @@ export default {
       type: String,
       default: ''
     },
+  },
+  computed: {
+    isFirstCandidate () {
+      return this.index === 0 && this.searchTerm.length
+    }
   }
 }
 </script>
@@ -52,7 +62,16 @@ export default {
   max-height: 136px;
   display: grid;
   grid-template-columns: 2fr auto;
-  margin-top: 21px
+  margin-top: 21px;
+
+  .text__highlight {
+    background: #fff73b;
+  }
+
+  &.is-first-candidate {
+    border: 1px solid #4765FF;
+    filter: drop-shadow( 0px 2px 2px rgba(0, 0, 0, 0.24));
+  }
 }
 
 .candidate-details-wrapper {
@@ -63,12 +82,12 @@ export default {
 
 .candidate-avatar-wrapper {
   background-color: #bbbbbb;
-  height: 136px;
+  height: 134px;
   width: 134px;
 }
 
 .candidate-avatar {
-  height: 136px;
+  height: 134px;
   width: 134px;
 }
 
@@ -98,13 +117,15 @@ export default {
 }
 
 .candidate-select {
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 16.41px;
-  color: #009688;
-  text-transform: uppercase;
-  margin-right: 4px;
-  padding-top: 14.5px;
+  a {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16.41px;
+    color: #009688;
+    text-transform: uppercase;
+    margin-right: 4px;
+    padding-top: 14.5px;
+  }
 }
 
 .candidate-email {
