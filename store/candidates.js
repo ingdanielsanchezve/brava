@@ -12,10 +12,9 @@ export const actions = {
     try {
       const candidates = await candidatesService.getCandidates(this.$axios)
       commit('setCandidates', candidates)
+      commit('setIsLoadingList', false)
     } catch (e) {
       console.error(e)
-    } finally {
-      commit('setIsLoadingList', false)
     }
   },
   TOGGLE_CANDIDATE_SUITABILITY ({ commit }, candidate) {
