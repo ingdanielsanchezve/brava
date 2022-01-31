@@ -1,6 +1,7 @@
 export default {
   target: 'static',
-  ssr: false,
+
+  ssr: true,
 
   baseUrl: process.env.BASE_URL || 'http://localhost:3000/',
 
@@ -52,9 +53,16 @@ export default {
     '@nuxtjs/axios',
     'nuxt-buefy',
     'nuxt-svg-loader',
-    'nuxt-moment'
+    'nuxt-moment',
+    '@nuxtjs/redirect-module',
   ],
 
-  build: {
-  }
+  redirect: [
+    {
+      from: '^.*(?<!\/)$',
+      to: (from, req) => req.url + '/'
+    }
+  ],
+
+  build: {}
 }

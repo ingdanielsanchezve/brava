@@ -72,6 +72,12 @@ export default {
       return this.$store.getters['candidates/isLoadingList']()
     }
   },
+  async created() {
+    await this.$store.dispatch('candidates/LOAD_CANDIDATES')
+    if (this.searchTerm.length) {
+      this.filterCandidatesList()
+    }
+  },
   methods: {
     filterCandidatesList () {
       this.filteredList = this.candidates.filter(candidate =>

@@ -22,9 +22,6 @@ export default {
   components: {
     Navbar,
     Footer
-  },
-  async fetch() {
-    await this.$store.dispatch('candidates/LOAD_CANDIDATES')
   }
 }
 </script>
