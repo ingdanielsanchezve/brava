@@ -1,7 +1,7 @@
 <template>
   <section class="footer">
     <div class="columns">
-      <div class="column is-two-fifths">
+      <div class="column is-4-desktop is-5-tablet is-12-mobile">
         <div class="buttons app-bars">
           <a class="button">
             <Chrome />
@@ -24,7 +24,7 @@
         </div>
       </div>
       <div class="column"></div>
-      <div class="column is-one-quarter">
+      <div class="column is-3-desktop is-4-tablet is-12-mobile">
         <div class="buttons status-bars">
           <a class="button">
             <span class="clock">{{ currentTime }}</span>

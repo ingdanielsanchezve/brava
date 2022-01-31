@@ -71,7 +71,7 @@ export default {
   },
   computed: {
     candidatesList () {
-      return this.searchTerm.length
+      return this.searchTerm.length > 0
         ? this.filteredList
         : this.candidates
     },
@@ -88,7 +88,7 @@ export default {
     }
   },
   mounted () {
-    if (this.searchTerm.length) {
+    if (this.searchTerm.length > 0) {
       this.$refs.searchTerm.focus()
       this.filterCandidatesList()
     }
