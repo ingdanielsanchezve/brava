@@ -6,7 +6,7 @@
           <div class="card-content">
             <div class="field input-wrapper">
               <p class="control has-icons-left">
-                <input v-model="searchTerm" class="input" type="text" @input="filterCandidatesList">
+                <input ref="searchTerm" v-model="searchTerm" class="input" type="text" @input="filterCandidatesList">
                 <span class="icon is-small is-left">
                   <fa icon="search" />
                 </span>
@@ -59,6 +59,15 @@ export default {
       suitableUsers: [],
     }
   },
+  watch: {
+    searchTerm (newVal, oldVal) {
+      if (newVal.length && newVal !== oldVal) {
+        this.$router.push('/search/' + newVal)
+      } else {
+        this.$router.push('/')
+      }
+    }
+  },
   computed: {
     candidatesList () {
       return this.searchTerm.length
@@ -73,10 +82,15 @@ export default {
     }
   },
   async created() {
-    await this.$store.dispatch('candidates/LOAD_CANDIDATES')
+    if (!this.candidatesList.length) {
+      await this.$store.dispatch('candidates/LOAD_CANDIDATES')
+    }
     if (this.searchTerm.length) {
       this.filterCandidatesList()
     }
+  },
+  mounted() {
+    this.$refs.searchTerm.focus()
   },
   methods: {
     filterCandidatesList () {

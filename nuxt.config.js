@@ -9,6 +9,8 @@ export default {
     baseURL: process.env.BASE_URL || 'http://localhost:3000/'
   },
 
+  loading: false,
+
   head: {
     title: 'Bravado',
     htmlAttrs: {
@@ -26,7 +28,7 @@ export default {
   },
 
   router: {
-    trailingSlash: true
+    trailingSlash: false
   },
 
   css: [
@@ -54,14 +56,6 @@ export default {
     'nuxt-buefy',
     'nuxt-svg-loader',
     'nuxt-moment',
-    '@nuxtjs/redirect-module',
-  ],
-
-  redirect: [
-    {
-      from: '^.*(?<!\/)$',
-      to: (from, req) => req.url + '/'
-    }
   ],
 
   build: {}
