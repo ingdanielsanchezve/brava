@@ -11,10 +11,6 @@ export default {
 
   loading: false,
 
-  generate: {
-    fallback: true
-  },
-
   head: {
     title: 'Bravado',
     htmlAttrs: {
