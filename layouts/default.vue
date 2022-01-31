@@ -23,8 +23,8 @@ export default {
     Navbar,
     Footer
   },
-  created () {
-    this.$store.dispatch('candidates/LOAD_CANDIDATES')
+  async fetch() {
+    await this.$store.dispatch('candidates/LOAD_CANDIDATES')
   }
 }
 </script>

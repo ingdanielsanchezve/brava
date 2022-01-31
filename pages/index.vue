@@ -21,6 +21,7 @@
               :data-key="'email'"
               :data-sources="candidatesList"
               :data-component="candidateComponent"
+              :extra-props="{ searchTerm: searchTerm }"
             />
           </div>
         </div>

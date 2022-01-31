@@ -1,5 +1,6 @@
 export default {
   target: 'static',
+  ssr: false,
 
   baseUrl: process.env.BASE_URL || 'http://localhost:3000/',
 
@@ -31,6 +32,7 @@ export default {
   ],
 
   plugins: [
+    {src: '~/plugins/vue-text-highlight.js', mode: 'client',}
   ],
 
   components: true,
@@ -50,15 +52,9 @@ export default {
     '@nuxtjs/axios',
     'nuxt-buefy',
     'nuxt-svg-loader',
-    'nuxt-moment',
-    '@nuxt/content',
-    'nuxt-content-highlight',
+    'nuxt-moment'
   ],
 
   build: {
-    transpile: [
-        'nuxt-content-highlight',
-        '@nuxt',
-    ],
   }
 }

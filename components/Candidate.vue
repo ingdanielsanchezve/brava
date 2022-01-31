@@ -6,13 +6,13 @@
       </div>
       <div class="candidate-details">
         <div class="candidate-name">
-          {{source.name}}
+          <text-highlight :queries="searchTerm"> {{ source.name }} </text-highlight>
         </div>
         <div class="candidate-title">
-          {{source.title}}
+          <text-highlight :queries="searchTerm"> {{ source.title }} </text-highlight>
         </div>
         <div class="candidate-location">
-          {{source.address}}, {{source.city}}
+          <text-highlight :queries="searchTerm"> {{ source.address + ', ' + source.city }} </text-highlight>
         </div>
 
         <div class="candidate-select">
@@ -22,7 +22,7 @@
     </div>
     <div class="candidate-contact-wrapper">
       <div class="candidate-email">
-        {{source.email}}
+        <text-highlight :queries="searchTerm"> {{ source.email }} </text-highlight>
       </div>
     </div>
   </div>
@@ -37,7 +37,11 @@ export default {
       default () {
         return {}
       }
-    }
+    },
+    searchTerm: {
+      type: String,
+      default: ''
+    },
   }
 }
 </script>
