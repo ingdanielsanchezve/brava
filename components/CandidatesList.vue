@@ -83,11 +83,14 @@ export default {
     }
   },
   async created () {
+    console.log("🚀 ~ file: CandidatesList.vue ~ line 87 ~ created ~ this.isLoadingList", this.isLoadingList)
+      console.log("🚀 ~ file: CandidatesList.vue ~ line 88 ~ created ~ this.candidates", this.candidates)
     if (!this.candidates.length) {
       await this.$store.dispatch('candidates/LOAD_CANDIDATES')
     }
   },
   mounted () {
+    console.log("🚀 ~ file: CandidatesList.vue ~ line 87 ~ mounted ~ this.isLoadingList", this.isLoadingList)
     console.log("🚀 ~ file: CandidatesList.vue ~ line 92 ~ mounted ~ this.candidates", this.candidates)
     if (this.searchTerm.length > 0) {
       this.$refs.searchTerm.focus()
