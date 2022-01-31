@@ -81,16 +81,16 @@ export default {
       return this.$store.getters['candidates/isLoadingList']()
     }
   },
-  async created() {
-    if (!this.candidatesList.length) {
+  async created () {
+    if (!this.candidates.length) {
       await this.$store.dispatch('candidates/LOAD_CANDIDATES')
     }
+  },
+  mounted () {
     if (this.searchTerm.length) {
+      this.$refs.searchTerm.focus()
       this.filterCandidatesList()
     }
-  },
-  mounted() {
-    this.$refs.searchTerm.focus()
   },
   methods: {
     filterCandidatesList () {
