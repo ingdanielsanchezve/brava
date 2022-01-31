@@ -2,6 +2,7 @@ import { candidatesService } from '@/common/api/candidates.services'
 
 export const state = () => ({
   candidates: [],
+  suitableCandidates: [],
   loadingList: false
 })
 
@@ -16,6 +17,9 @@ export const actions = {
     } finally {
       commit('setIsLoadingList', false)
     }
+  },
+  TOGGLE_CANDIDATE_SUITABILITY ({ commit }, candidate) {
+    commit('toggleCandidateSuitable', candidate)
   }
 }
 
@@ -25,6 +29,14 @@ export const mutations = {
   },
   setIsLoadingList (state, isLoadingList) {
     state.loadingList = isLoadingList
+  },
+  toggleCandidateSuitable (state, candidate) {
+    const index = state.suitableCandidates.findIndex(c => c.email === candidate.email)
+    if (index === -1) {
+      state.suitableCandidates.push(candidate)
+    } else {
+      state.suitableCandidates.splice(index, 1)
+    }
   }
 }
 
@@ -34,5 +46,8 @@ export const getters = {
   },
   isLoadingList: state => () => {
     return state.loadingList
+  },
+  isCandidateSuitable: state => candidateEmail => {
+    return state.suitableCandidates.find(c => c.email === candidateEmail)
   }
 }

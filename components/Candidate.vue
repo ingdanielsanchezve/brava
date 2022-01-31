@@ -1,5 +1,5 @@
 <template>
-  <div class="candidate-card" :class="{'is-first-candidate': isFirstCandidate}">
+  <div class="candidate-card" :class="{'is-first-candidate': isCandidateSuitable}">
     <div class="candidate-details-wrapper">
       <div class="candidate-avatar-wrapper">
         <img class="candidate-avatar" :src="source.avatar" />
@@ -16,8 +16,8 @@
         </div>
 
         <div class="candidate-select">
-          <a href="#">
-           {{ isFirstCandidate ? 'skip selection' : 'mark as siutable' }}
+          <a @click="setCandidateSuitable(source)">
+            {{ isCandidateSuitable ? 'Skip selection' : 'Mark as suitable' }}
           </a>
         </div>
       </div>
@@ -49,8 +49,13 @@ export default {
     },
   },
   computed: {
-    isFirstCandidate () {
-      return this.index === 0 && this.searchTerm.length
+    isCandidateSuitable () {
+      return this.$store.getters['candidates/isCandidateSuitable'](this.source.email)
+    }
+  },
+  methods: {
+    setCandidateSuitable (candidate) {
+      this.$store.dispatch('candidates/TOGGLE_CANDIDATE_SUITABILITY', candidate)
     }
   }
 }
@@ -63,6 +68,7 @@ export default {
   display: grid;
   grid-template-columns: 2fr auto;
   margin-top: 21px;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.24);
 
   .text__highlight {
     background: #fff73b;
